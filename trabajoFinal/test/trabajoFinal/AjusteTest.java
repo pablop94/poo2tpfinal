@@ -3,7 +3,6 @@ package trabajoFinal;
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
-import java.time.Period;
 
 import org.junit.Before;
 import org.junit.Test;

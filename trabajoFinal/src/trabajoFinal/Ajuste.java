@@ -1,7 +1,6 @@
 package trabajoFinal;
 
 import java.time.LocalDate;
-import java.time.Period;
 
 public class Ajuste {
 
@@ -25,10 +24,14 @@ public class Ajuste {
 	}
 
 	public Double obtenerPrecioEn(LocalDate fecha) {
-		if (fecha.equals(_inicio) || fecha.equals(_fin) || (fecha.isAfter(_inicio) && fecha.isBefore(_fin))){
+		if (this.contieneFecha(fecha)){
 			return _precio;
 		}
 		return new Double(0);
+	}
+	
+	public Boolean contieneFecha(LocalDate fecha){
+		return fecha.equals(_inicio) || fecha.equals(_fin) || (fecha.isAfter(_inicio) && fecha.isBefore(_fin));
 	}
 
 	public LocalDate obtenerInicio() {
