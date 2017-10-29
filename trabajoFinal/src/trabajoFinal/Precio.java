@@ -18,6 +18,7 @@ public class Precio {
 
 	public Double obtenerPrecioEn(LocalDate fecha) {
 		if (_ajustes.stream().anyMatch((ajuste) -> ajuste.contieneFecha(fecha))){
+			//Solo se permite un ajuste por periodo
 			return _ajustes.stream()
 				.filter((ajuste) -> ajuste.contieneFecha(fecha))
 				.findFirst().get().obtenerPrecioEn(fecha);
