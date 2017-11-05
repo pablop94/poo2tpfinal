@@ -28,7 +28,7 @@ public class Precio {
 		}
 	}
 
-	public void agregarAjuste(LocalDate inicio, LocalDate fin, Double precio) {
+	public void ingresarAjuste(LocalDate inicio, LocalDate fin, Double precio) {
 		_ajustes.add(new Ajuste(inicio, fin, precio));
 	}
 
