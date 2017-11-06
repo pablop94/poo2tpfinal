@@ -1,11 +1,17 @@
 package trabajoFinal;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Publicacion {
 
 	private String ciudad;
-	private LocalDate fechaDeEntrada;;
+	private LocalDate fechaDeEntrada;
+	private Inmueble inmueble;
+	private LocalDate horarioCheckIn; 
+	private LocalDate horarioCheckOut;
+	private ArrayList<String> formasDePago;
+	private Precio precio;
 
 	public String getCiudad() {
 		return ciudad;
@@ -18,25 +24,19 @@ public class Publicacion {
 	public LocalDate getFechaDeEntrada() {
 		return fechaDeEntrada;
 	}
-
-	/*public class Publicaciones {
-	private Inmueble inmueble;
-	private Double horarioCheckIn; 
-	private Double horarioCheckOut;
-	private ArrayList<String> formasDePago;
-	private Precio precio;
-	
-	
-		public Publicaciones (Inmueble inmu,Double horarioIn,Double horarioOut) {
+		
+	public Publicacion (Inmueble inmu,LocalDate horarioIn,LocalDate horarioOut, Precio precio) {
 			this.inmueble=inmu;
 			this.horarioCheckIn=horarioIn;
 			this.horarioCheckOut=horarioOut;
-			this.formasDePago= new ArrayList<String>.add("Efectivo")
+			this.precio = precio;
+			this.formasDePago= new ArrayList<String>();
+			formasDePago.add("Efectivo");
 		}
 		
-		public void ingresarAjuste(LocalDate fechaInicial, LocalDate fechaFinal,Precio precio) {
+		public void ingresarAjuste(LocalDate fechaInicial, LocalDate fechaFinal,Double precio) {
 			
-				this.precio.ingresarAjuste(fechaInicial,fechaFinal,precio);
+				this.precio.ingresarAjuste(new Ajuste (fechaInicial,fechaFinal,precio));
 			
-		}*/
+		}
 }
