@@ -1,7 +1,7 @@
 package trabajoFinal;
 
 public class Inmueble {
-	private String propietario;
+	private Usuario propietario;
 	private String direccion;
 	private String servicios;
 	private String tipoDeInmuble;
@@ -10,4 +10,10 @@ public class Inmueble {
 	private Double superficie;
 	private String fotos;
 	private Double capacidad;
+	
+	public Usuario getUser() {
+		return(this.propietario);
+	}
 }
+
+
