@@ -28,11 +28,11 @@ public class Precio {
 		}
 	}
 
-	public void ingresarAjuste(LocalDate inicio, LocalDate fin, Double precio) {
-		_ajustes.add(new Ajuste(inicio, fin, precio));
-	}
-
 	public void modificarPrecioBase(Double nuevoPrecio) {
 		_precioBase = nuevoPrecio;		
+	}
+
+	public void ingresarAjuste(Ajuste ajuste) {
+		_ajustes.add(ajuste);		
 	}
 }
