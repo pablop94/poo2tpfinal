@@ -3,7 +3,7 @@ package trabajoFinal;
 //Falta Implementar "EnviarMailDeConfirmacion"
 public class Reserva {
 	
-		private Publicaciones publicacion;
+		private Publicacion publicacion;
 		private Usuario inquilino;
 		private String formaDePago;
 		private Boolean estaConfirmada;
