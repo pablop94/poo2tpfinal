@@ -26,7 +26,7 @@ public class Publicaciones {
 			
 		}
 		public void reservar(LocalDate fechaInicial, LocalDate fechaFinal, ArrayList<String> formaDePago, Usuario inquilino) {
-			this.inmueble.getUser().
+			this.inmueble.getUser().d
 		}
 }	
 
