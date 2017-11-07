@@ -37,4 +37,9 @@ public class Publicacion {
 		public void ingresarAjuste(Ajuste ajuste) {
 			this.precio.ingresarAjuste(ajuste);
 		}
+		
+		public void reservar (LocalDate fechaInicial, LocalDate fechaFinal,ArrayList<String> formaDePago,Usuario inquilino) {
+			this.inmueble.getUser().notificarPorMailIntentoDeReserva(fechaInicial, fechaFinal, formaDePago, inquilino);
+			
+		}
 }
