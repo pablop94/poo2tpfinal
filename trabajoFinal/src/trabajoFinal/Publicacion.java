@@ -35,8 +35,6 @@ public class Publicacion {
 		}
 		
 		public void ingresarAjuste(Ajuste ajuste) {
-			
-				this.precio.ingresarAjuste(ajuste);
-			
+			this.precio.ingresarAjuste(ajuste);
 		}
 }

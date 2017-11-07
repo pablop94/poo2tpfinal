@@ -8,8 +8,6 @@ import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 
-
-
 public class PublicacionesTest {
 	private Publicacion pub;
 	private Usuario user;
@@ -21,7 +19,7 @@ public class PublicacionesTest {
 	public void setUp(){
 		user = mock(Usuario.class);
 		precio = mock(Precio.class);
-		inmu =mock(Inmueble.class);
+		inmu = mock(Inmueble.class);
 		ajuste = mock(Ajuste.class);
 		pub = new Publicacion(inmu,LocalDate.of(2016, 3, 20),LocalDate.of(2015, 3, 20),precio);
 	}
