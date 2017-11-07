@@ -1,4 +1,4 @@
-package trabajoFinal;
+package filtros;
 
 import static org.junit.Assert.*;
 
@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import filtros.FiltroPorCiudad;
 import filtros.FiltroPorFechaDeEntrada;
+import trabajoFinal.Publicacion;
 
 public class FiltroTest {
 
