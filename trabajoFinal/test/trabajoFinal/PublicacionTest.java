@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PublicacionesTest {
+public class PublicacionTest {
 	private Publicacion pub;
 	private Usuario user;
 	private Precio precio;
