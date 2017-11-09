@@ -4,17 +4,17 @@ import java.time.LocalDate;
 
 import trabajoFinal.Publicacion;
 
-public class FiltroPorFechaDeEntrada extends FiltroSimple {
+public class FiltroPorHorarioCheckIn extends FiltroSimple {
 
 	private LocalDate valor;
 
-	public FiltroPorFechaDeEntrada(LocalDate fecha) {
+	public FiltroPorHorarioCheckIn(LocalDate fecha) {
 		valor = fecha;
 	}
 
 	@Override
 	protected Boolean coincide(Publicacion publicacion) {
-		return this.valor.equals(publicacion.getFechaDeEntrada());
+		return this.valor.equals(publicacion.getHorarioCheckIn());
 	}
 
 }

@@ -12,8 +12,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import filtros.FiltroPorCiudad;
-import filtros.FiltroPorFechaDeEntrada;
-import trabajoFinal.Publicacion;
+import filtros.FiltroPorHorarioCheckIn;
+import trabajoFinal.*;
 
 public class FiltroTest {
 
@@ -22,7 +22,7 @@ public class FiltroTest {
 	private Publicacion publicacion3;
 	private FiltroPorCiudad filtroPorCiudad;
 	private ArrayList<Publicacion> lista;
-	private FiltroPorFechaDeEntrada filtroPorFechaDeEntrada;
+	private FiltroPorHorarioCheckIn filtroPorHorarioCheckIn;
 
 	@Before
 	public void setUp() throws Exception {
@@ -51,16 +51,70 @@ public class FiltroTest {
 	}
 	
 	@Test
-	public void test_filtroPorFechaDeEntradaDevuelveLasPublicacionesConIgualFechaDeEntrada() {
-		filtroPorFechaDeEntrada = new FiltroPorFechaDeEntrada(LocalDate.of(2017, 05, 14));
-		when(publicacion1.getFechaDeEntrada()).thenReturn(LocalDate.of(2017, 05, 14));
-		when(publicacion2.getFechaDeEntrada()).thenReturn(LocalDate.of(2022, 05, 14));
-		when(publicacion3.getFechaDeEntrada()).thenReturn(LocalDate.of(2013, 05, 14));
+	public void test_filtroPorHorarioCheckInDevuelveLasPublicacionesConIgualHorarioCheckIn() {
+		filtroPorHorarioCheckIn = new FiltroPorHorarioCheckIn(LocalDate.of(2017, 05, 14));
+		when(publicacion1.getHorarioCheckIn()).thenReturn(LocalDate.of(2017, 05, 14));
+		when(publicacion2.getHorarioCheckIn()).thenReturn(LocalDate.of(2022, 05, 14));
+		when(publicacion3.getHorarioCheckIn()).thenReturn(LocalDate.of(2013, 05, 14));
 
-		List<Publicacion> listaResultado = filtroPorFechaDeEntrada.filtrar(lista);
+		List<Publicacion> listaResultado = filtroPorHorarioCheckIn.filtrar(lista);
 		
 		assertTrue(listaResultado.contains(publicacion1));
 		assertEquals(listaResultado.size(), 1);
 	}
+	
+	@Test
+	public void test_filtroPorHorarioCheckOutDevuelveLasPublicacionesConIgualHorarioCheckOut() {
+		FiltroPorHorarioCheckOut filtroPorHorarioCheckOut = new FiltroPorHorarioCheckOut(LocalDate.of(2017, 05, 14));
+		when(publicacion1.getHorarioCheckOut()).thenReturn(LocalDate.of(2017, 05, 14));
+		when(publicacion2.getHorarioCheckOut()).thenReturn(LocalDate.of(2022, 05, 14));
+		when(publicacion3.getHorarioCheckOut()).thenReturn(LocalDate.of(2013, 05, 14));
 
+		List<Publicacion> listaResultado = filtroPorHorarioCheckOut.filtrar(lista);
+		
+		assertTrue(listaResultado.contains(publicacion1));
+		assertEquals(listaResultado.size(), 1);
+	}
+	
+	@Test
+	public void test_filtroPorPrecioMinimoDevuelveLasPublicacionesConIgualOmayorPrecio() {
+		FiltroPorPrecioMinimo filtro = new FiltroPorPrecioMinimo(new Double(50), LocalDate.MIN);
+		when(publicacion1.obtenerPrecioEn(LocalDate.MIN)).thenReturn(new Double(40));
+		when(publicacion2.obtenerPrecioEn(LocalDate.MIN)).thenReturn(new Double(50));
+		when(publicacion3.obtenerPrecioEn(LocalDate.MIN)).thenReturn(new Double(60));
+
+		List<Publicacion> listaResultado = filtro.filtrar(lista);
+
+		assertTrue(listaResultado.contains(publicacion2));
+		assertTrue(listaResultado.contains(publicacion3));
+		assertEquals(listaResultado.size(), 2);
+	}
+
+	@Test
+	public void test_filtroPorPrecioMaximoDevuelveLasPublicacionesConIgualOmenorPrecio() {
+		FiltroPorPrecioMaximo filtro = new FiltroPorPrecioMaximo(new Double(50), LocalDate.MIN);
+		when(publicacion1.obtenerPrecioEn(LocalDate.MIN)).thenReturn(new Double(40));
+		when(publicacion2.obtenerPrecioEn(LocalDate.MIN)).thenReturn(new Double(50));
+		when(publicacion3.obtenerPrecioEn(LocalDate.MIN)).thenReturn(new Double(60));
+
+		List<Publicacion> listaResultado = filtro.filtrar(lista);
+
+		assertTrue(listaResultado.contains(publicacion1));
+		assertTrue(listaResultado.contains(publicacion2));
+		assertEquals(listaResultado.size(), 2);
+	}
+	
+	@Test
+	public void test_filtroPorCantidadDeHuespedesDevuelveLasPublicacionesConIgualOmayorCantidadDeHuespedes() {
+		FiltroPorCantidadDeHuespedes filtro = new FiltroPorCantidadDeHuespedes(new Integer(5));
+		when(publicacion1.obtenerCantidadDeHuespedes()).thenReturn(new Integer(4));
+		when(publicacion2.obtenerCantidadDeHuespedes()).thenReturn(new Integer(5));
+		when(publicacion3.obtenerCantidadDeHuespedes()).thenReturn(new Integer(6));
+
+		List<Publicacion> listaResultado = filtro.filtrar(lista);
+
+		assertTrue(listaResultado.contains(publicacion2));
+		assertTrue(listaResultado.contains(publicacion3));
+		assertEquals(listaResultado.size(), 2);
+	}
 }

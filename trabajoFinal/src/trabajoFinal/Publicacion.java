@@ -5,24 +5,27 @@ import java.util.ArrayList;
 
 public class Publicacion {
 
-	private String ciudad;
-	private LocalDate fechaDeEntrada;
 	private Inmueble inmueble;
 	private LocalDate horarioCheckIn; 
 	private LocalDate horarioCheckOut;
 	private ArrayList<String> formasDePago;
 	private Precio precio;
+	
 
 	public String getCiudad() {
-		return ciudad;
+		return this.getInmueble().getCiudad();
 	}
 
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
+	private Inmueble getInmueble() {
+		return inmueble;
+	}
+	
+	public LocalDate getHorarioCheckOut() {
+		return horarioCheckOut;
 	}
 
-	public LocalDate getFechaDeEntrada() {
-		return fechaDeEntrada;
+	public LocalDate getHorarioCheckIn() {
+		return horarioCheckIn;
 	}
 		
 	public Publicacion (Inmueble inmu,LocalDate horarioIn,LocalDate horarioOut, Precio precio) {
@@ -38,8 +41,18 @@ public class Publicacion {
 			this.precio.ingresarAjuste(ajuste);
 		}
 		
+		public Double obtenerPrecioEn(LocalDate fecha) {
+			return this.precio.obtenerPrecioEn(fecha);
+		}
+		
 		public void reservar (LocalDate fechaInicial, LocalDate fechaFinal,ArrayList<String> formaDePago,Usuario inquilino) {
 			this.inmueble.getUser().notificarPorMailIntentoDeReserva(fechaInicial, fechaFinal, formaDePago, inquilino);
 			
 		}
+
+		public Integer obtenerCantidadDeHuespedes() {
+			return this.getInmueble().getCapacidad();
+		}
+
+
 }

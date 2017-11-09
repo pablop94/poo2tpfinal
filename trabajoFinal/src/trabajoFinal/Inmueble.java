@@ -9,7 +9,7 @@ public class Inmueble {
 	private String ciudad;
 	private Double superficie;
 	private String fotos;
-	private Double capacidad;
+	private Integer capacidad;
 	
 	public Usuario getUser() {
 		return(this.propietario);
@@ -43,7 +43,7 @@ public class Inmueble {
 		return(this.fotos);
 	}
 	
-	public Double getCapacidad() {
+	public Integer getCapacidad() {
 		return(this.capacidad);
 	}
 }
