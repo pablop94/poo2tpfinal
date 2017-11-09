@@ -15,7 +15,7 @@ import filtros.FiltroPorCiudad;
 import filtros.FiltroPorHorarioCheckIn;
 import trabajoFinal.*;
 
-public class FiltroTest {
+public class FiltroSimpleTest {
 
 	private Publicacion publicacion1;
 	private Publicacion publicacion2;
