@@ -25,4 +25,8 @@ public class Reserva {
 			//this.inquilino.enviarMailConfirmando
 		}
 
+		public Boolean estaConfirmada() {
+			return estaConfirmada;
+		}
+
 }

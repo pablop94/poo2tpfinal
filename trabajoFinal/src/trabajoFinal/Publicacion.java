@@ -46,7 +46,7 @@ public class Publicacion {
 		}
 		
 		public void reservar (LocalDate fechaInicial, LocalDate fechaFinal,ArrayList<String> formaDePago,Usuario inquilino) {
-			this.inmueble.getUser().notificarPorMailIntentoDeReserva(fechaInicial, fechaFinal, formaDePago, inquilino);
+			this.inmueble.getUsuario().notificarPorMailIntentoDeReserva(fechaInicial, fechaFinal, formaDePago, inquilino);
 			
 		}
 
