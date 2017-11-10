@@ -27,7 +27,7 @@ public class Inmueble {
 		this.capacidad = cantidadHuespedes;
 	}
 
-	public Usuario getUsuario() {
+	public Usuario getPropietario() {
 		return(this.propietario);
 	}
 	

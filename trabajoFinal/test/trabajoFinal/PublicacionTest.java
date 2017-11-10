@@ -35,10 +35,11 @@ public class PublicacionTest {
 	}
 	
 	@Test
-	public void testReservar() {
+	public void testReservar_notificaAlInquilinoConUnMail() {
+		when(inmu.getPropietario()).thenReturn(user); 
 		pub.reservar(LocalDate.of(2016, 3, 20), LocalDate.of(2015, 3, 20), formaDePago, user2);
-		verify((verify(inmu,times(1)).getUsuario()),times(1)).notificarPorMailIntentoDeReserva(LocalDate.of(2016, 3, 20), LocalDate.of(2015, 3, 20), formaDePago, user2);
 		
+		verify(user, times(1)).notificarPorMailIntentoDeReserva(LocalDate.of(2016, 3, 20), LocalDate.of(2015, 3, 20), formaDePago, user2);
 		
 	}
 

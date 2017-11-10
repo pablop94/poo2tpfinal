@@ -21,7 +21,7 @@ public class InmuebleTest {
 
 	@Test
 	public void test_constructorInmueble() {
-		assertEquals(inmueble.getUsuario(), usuario);
+		assertEquals(inmueble.getPropietario(), usuario);
 		assertEquals(inmueble.getDireccion(), "/home");
 		assertEquals(inmueble.getServicios(), servicios);
 		assertEquals(inmueble.getTipoDeInmueble(), "Carpa");

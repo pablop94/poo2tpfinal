@@ -17,6 +17,7 @@ public class FiltroCompuestoTest {
 	private FiltroPorCantidadDeHuespedes filtroSimple2;
 	private FiltroAND filtroAND;
 	private FiltroOR filtroOR;
+	private FiltroOR filtroGrande;
 	private Publicacion publicacion1;
 	private Publicacion publicacion2;
 	private Publicacion publicacion3;
@@ -48,6 +49,7 @@ public class FiltroCompuestoTest {
 
 		filtroAND = new FiltroAND(filtroSimple, filtroSimple2);
 		filtroOR = new FiltroOR(filtroSimple, filtroSimple2);
+		filtroGrande = new FiltroOR(filtroSimple, filtroAND);
 	}
 
 	@Test
@@ -65,5 +67,12 @@ public class FiltroCompuestoTest {
 		assertTrue(resultados.contains(publicacion2));
 		assertTrue(resultados.contains(publicacion3));
 	}
-
+	
+	@Test
+	public void test_unFiltroCompuestoDevuelveLasPublicacionesQueSusHijasDevuelven() {
+		List<Publicacion> resultados = filtroGrande.filtrar(lista);
+		assertEquals(resultados.size(), 2);
+		assertTrue(resultados.contains(publicacion1));
+		assertTrue(resultados.contains(publicacion2));
+	}
 }

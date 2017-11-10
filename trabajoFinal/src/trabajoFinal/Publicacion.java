@@ -29,30 +29,30 @@ public class Publicacion {
 	}
 		
 	public Publicacion (Inmueble inmu,LocalDate horarioIn,LocalDate horarioOut, Precio precio) {
-			this.inmueble=inmu;
-			this.horarioCheckIn=horarioIn;
-			this.horarioCheckOut=horarioOut;
-			this.precio = precio;
-			this.formasDePago= new ArrayList<String>();
-			formasDePago.add("Efectivo");
-		}
+		this.inmueble=inmu;
+		this.horarioCheckIn=horarioIn;
+		this.horarioCheckOut=horarioOut;
+		this.precio = precio;
+		this.formasDePago= new ArrayList<String>();
+		formasDePago.add("Efectivo");
+	}
+	
+	public void ingresarAjuste(Ajuste ajuste) {
+		this.precio.ingresarAjuste(ajuste);
+	}
+	
+	public Double obtenerPrecioEn(LocalDate fecha) {
+		return this.precio.obtenerPrecioEn(fecha);
+	}
+	
+	public void reservar (LocalDate fechaInicial, LocalDate fechaFinal,ArrayList<String> formaDePago,Usuario inquilino) {
+		this.inmueble.getPropietario().notificarPorMailIntentoDeReserva(fechaInicial, fechaFinal, formaDePago, inquilino);
 		
-		public void ingresarAjuste(Ajuste ajuste) {
-			this.precio.ingresarAjuste(ajuste);
-		}
-		
-		public Double obtenerPrecioEn(LocalDate fecha) {
-			return this.precio.obtenerPrecioEn(fecha);
-		}
-		
-		public void reservar (LocalDate fechaInicial, LocalDate fechaFinal,ArrayList<String> formaDePago,Usuario inquilino) {
-			this.inmueble.getUsuario().notificarPorMailIntentoDeReserva(fechaInicial, fechaFinal, formaDePago, inquilino);
-			
-		}
+	}
 
-		public Integer obtenerCantidadDeHuespedes() {
-			return this.getInmueble().getCapacidad();
-		}
+	public Integer obtenerCantidadDeHuespedes() {
+		return this.getInmueble().getCapacidad();
+	}
 
 
 }
