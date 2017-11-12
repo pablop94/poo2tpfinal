@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mockito.Matchers;
-
 public class Publicacion {
 
 	private Inmueble inmueble;
