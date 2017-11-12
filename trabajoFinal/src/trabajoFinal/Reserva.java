@@ -1,5 +1,6 @@
 package trabajoFinal;
 
+import java.time.LocalDate;
 import java.util.Observable;
 
 //Falta Implementar "EnviarMailDeConfirmacion"
@@ -27,6 +28,14 @@ public class Reserva extends Observable{
 
 	public Boolean estaConfirmada() {
 		return estaConfirmada;
+	}
+	
+	public LocalDate tiempoCheckInReservas() {
+		return this.publicacion.getHorarioCheckIn();
+	}
+
+	public String ciudadReserva() {
+		return this.publicacion.getCiudad();
 	}
 
 }
