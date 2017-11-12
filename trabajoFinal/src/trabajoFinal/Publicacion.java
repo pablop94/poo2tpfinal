@@ -2,13 +2,16 @@ package trabajoFinal;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+
+import org.mockito.Matchers;
 
 public class Publicacion {
 
 	private Inmueble inmueble;
 	private LocalDate horarioCheckIn; 
 	private LocalDate horarioCheckOut;
-	private ArrayList<String> formasDePago;
+	private List<String> formasDePago;
 	private Precio precio;
 	
 
@@ -52,6 +55,10 @@ public class Publicacion {
 
 	public Integer obtenerCantidadDeHuespedes() {
 		return this.getInmueble().getCapacidad();
+	}
+
+	public List<String> formasDePago() {
+		return this.formasDePago;
 	}
 
 

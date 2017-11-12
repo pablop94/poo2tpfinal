@@ -33,6 +33,7 @@ public class PublicacionTest {
 	public void test_Constructor() {
 		assertEquals(pub.getHorarioCheckIn(), LocalDate.of(2016, 3, 20));
 		assertEquals(pub.getHorarioCheckOut(), LocalDate.of(2015, 3, 20));
+		assertTrue(pub.formasDePago().contains("Efectivo"));
 	}
 	
 	@Test
