@@ -3,8 +3,9 @@ package trabajoFinal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
-public class Publicacion {
+public class Publicacion extends Observable{
 
 	private Inmueble inmueble;
 	private LocalDate horarioCheckIn; 
@@ -57,6 +58,12 @@ public class Publicacion {
 
 	public List<String> formasDePago() {
 		return this.formasDePago;
+	}
+
+	public void modificarPrecio(Double nuevoPrecio) {
+		this.precio.modificarPrecioBase(nuevoPrecio);
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 

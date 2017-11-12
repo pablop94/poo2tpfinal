@@ -5,6 +5,7 @@ import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Observer;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -70,6 +71,23 @@ public class PublicacionTest {
 		when(inmu.getCiudad()).thenReturn("Avellaneda"); 
 		
 		assertEquals(pub.getCiudad(), "Avellaneda");
+	}
+	
+	@Test
+	public void test_elPrecioDeLaPublicacionCambiaElPrecioBaseDelPrecio() {
+		pub.modificarPrecio(new Double(50));
+		
+		verify(precio, times(1)).modificarPrecioBase(new Double(50));
+	}
+	
+	@Test
+	public void test_cuandoSeCambiaElPrecioDeLaPublicacionSeLeInformaALosSuscriptores() {
+		Observer suscriptor = mock(Observer.class);
+		pub.addObserver(suscriptor);
+		
+		pub.modificarPrecio(new Double(50));
+
+		verify(suscriptor, times(1)).update(pub, null);
 	}
 }
 
