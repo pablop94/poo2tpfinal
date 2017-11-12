@@ -28,6 +28,13 @@ public class PublicacionTest {
 		formaDePago = new ArrayList<String>();
 		formaDePago.add("Hola");
 	}
+	
+	@Test
+	public void test_Constructor() {
+		assertEquals(pub.getHorarioCheckIn(), LocalDate.of(2016, 3, 20));
+		assertEquals(pub.getHorarioCheckOut(), LocalDate.of(2015, 3, 20));
+	}
+	
 	@Test
 	public void testIngresarAjuste() {
 		pub.ingresarAjuste(ajuste);
@@ -43,6 +50,26 @@ public class PublicacionTest {
 		
 	}
 
+	@Test
+	public void test_elPrecioDeLaPublicacionEnUnaFechaEsElDeSuPrecio() {
+		when(precio.obtenerPrecioEn(LocalDate.of(2016, 3, 20))).thenReturn(new Double(45)); 
+		
+		assertEquals(pub.obtenerPrecioEn(LocalDate.of(2016, 3, 20)), new Double(45));
+	}
+	
+	@Test
+	public void test_laCantidadDeHuespedesDeUnaPublicacionEsLaCantidadDeSuInmueble() {
+		when(inmu.getCapacidad()).thenReturn(new Integer(15)); 
+		
+		assertEquals(pub.obtenerCantidadDeHuespedes(), new Integer(15));
+	}
+	
+	@Test
+	public void test_laCiudadDeUnaPublicacionEsLaCiudadDeSuInmueble() {
+		when(inmu.getCiudad()).thenReturn("Avellaneda"); 
+		
+		assertEquals(pub.getCiudad(), "Avellaneda");
+	}
 }
 
 
