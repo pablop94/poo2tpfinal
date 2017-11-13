@@ -23,4 +23,12 @@ public class Ranking {
 	public Usuario obtenerRankeador() {
 		return _rankeador;
 	}
+
+	public Double obtenerPuntaje() {
+		return _puntuacion.obtenerPuntaje();
+	}
+
+	public String obtenerCategoria() {
+		return _puntuacion.obtenerCategoria();
+	}
 }

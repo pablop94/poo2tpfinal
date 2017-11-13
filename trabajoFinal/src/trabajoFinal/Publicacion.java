@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+import java.util.Observer;
 
 public class Publicacion extends Observable{
 
@@ -64,6 +65,11 @@ public class Publicacion extends Observable{
 		this.precio.modificarPrecioBase(nuevoPrecio);
 		this.setChanged();
 		this.notifyObservers();
+	}
+
+	public void suscribirACambioDePrecio(Observer suscriptor) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

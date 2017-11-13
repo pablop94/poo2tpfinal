@@ -88,7 +88,17 @@ public class PublicacionTest {
 		pub.modificarPrecio(new Double(50));
 
 		verify(suscriptor, times(1)).update(pub, null);
-	}
+	} 
+	
+	@Test
+	public void test_cuandoUnObservadorSeSuscribeACambioDePrecioElObservadorSeSuscribeAlEventoCambioDePrecio() {
+		Observer suscriptor = mock(Observer.class);
+		//pub.suscribirACambioDePrecio(suscriptor);
+		
+		pub.modificarPrecio(new Double(50));
+
+		verify(suscriptor, times(1)).update(pub, null);
+	} 
 }
 
 

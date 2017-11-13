@@ -27,4 +27,15 @@ public class RankingTest {
 		assertEquals(ranking.obtenerRankeador(), rankeador);
 	}
 
+	@Test
+	public void test_elPuntajeDeUnRankingEsElPuntajeDeSuPuntuacion() {
+		when(puntuacion.obtenerPuntaje()).thenReturn(new Double(30));
+		assertEquals(ranking.obtenerPuntaje(), new Double(30));
+	}
+	
+	@Test
+	public void test_laCategoriaDeUnRankingEsLaCategoriaDeSuPuntuacion() {
+		when(puntuacion.obtenerCategoria()).thenReturn("Llega Borracho");
+		assertEquals(ranking.obtenerCategoria(), "Llega Borracho");
+	}
 }
