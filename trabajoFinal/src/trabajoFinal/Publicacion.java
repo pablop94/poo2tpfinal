@@ -62,15 +62,11 @@ public class Publicacion extends Observable{
 	}
 
 	public void modificarPrecio(Double nuevoPrecio) {
+		Double precioAnterior = precio.obtenerPrecioBase();
 		this.precio.modificarPrecioBase(nuevoPrecio);
-		this.setChanged();
-		this.notifyObservers();
+		if (precioAnterior > nuevoPrecio) {
+			this.setChanged();
+			this.notifyObservers();
+		}
 	}
-
-	public void suscribirACambioDePrecio(Observer suscriptor) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 }

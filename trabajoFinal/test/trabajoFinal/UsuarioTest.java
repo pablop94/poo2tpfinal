@@ -20,9 +20,9 @@ public class UsuarioTest {
 		inq1 = mock(Inquilino.class);
 		user1 = new Usuario("Tobias", "mail1", "42424", inq1);
 		inmu = mock(Inmueble.class);
-		pub = new Publicacion(inmu,LocalDate.of(2016, 3, 20),LocalDate.of(2015, 3, 20),precio);
-		formaDePago = new ArrayList<String>();
-		formaDePago.add("Hola");
+//		pub = new Publicacion(inmu,LocalDate.of(2016, 3, 20),LocalDate.of(2015, 3, 20),precio);
+		//	formaDePago = new ArrayList<String>();
+		//formaDePago.add("Hola");
 	}
 	
 	

@@ -81,9 +81,11 @@ public class PublicacionTest {
 	}
 	
 	@Test
-	public void test_cuandoSeCambiaElPrecioDeLaPublicacionSeLeInformaALosSuscriptores() {
+	public void test_cuandoSeCambiaElPrecioDeLaPublicacionSeLeInformaALosSuscriptoresSiElPrecioBaja() {
 		Observer suscriptor = mock(Observer.class);
 		pub.addObserver(suscriptor);
+		
+		when(precio.obtenerPrecioBase()).thenReturn(new Double(60));
 		
 		pub.modificarPrecio(new Double(50));
 
@@ -91,14 +93,16 @@ public class PublicacionTest {
 	} 
 	
 	@Test
-	public void test_cuandoUnObservadorSeSuscribeACambioDePrecioElObservadorSeSuscribeAlEventoCambioDePrecio() {
+	public void test_cuandoSeCambiaElPrecioDeLaPublicacionNoSeLeInformaALosSuscriptoresSiElPrecioNoBaja() {
 		Observer suscriptor = mock(Observer.class);
-		//pub.suscribirACambioDePrecio(suscriptor);
+		pub.addObserver(suscriptor);
+		
+		when(precio.obtenerPrecioBase()).thenReturn(new Double(40));
 		
 		pub.modificarPrecio(new Double(50));
 
-		verify(suscriptor, times(1)).update(pub, null);
-	} 
+		verify(suscriptor, never()).update(pub, null);
+	}
 }
 
 
