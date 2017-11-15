@@ -11,15 +11,13 @@ public class Usuario extends Cuenta implements IRankeable {
 	private Rol rol;
 	private List<Publicacion> publicaciones;
 	private List<Inmueble> inmuebles;
-	private List<Reserva> reservasInquilino;
-	private List<Reserva> reservasPropietario;
+	private List<Reserva> reservas;
 	private List<Ranking> rankings;
 	
 	public Usuario(String nombre, String mail, String numeroTelefono, Rol rol) {
 		super(nombre, mail, numeroTelefono);
 		this.inmuebles= new ArrayList<Inmueble>();
-		this.reservasInquilino= new ArrayList<Reserva>();
-		this.reservasPropietario= new ArrayList<Reserva>();
+		this.reservas= new ArrayList<Reserva>();
 		this.publicaciones= new ArrayList<Publicacion>();
 		this.rankings= new ArrayList<Ranking>();
 		this.rol= new Inquilino();
@@ -60,8 +58,8 @@ public class Usuario extends Cuenta implements IRankeable {
 
 
 
-	public void agregarReservaDeInquilino(Reserva r) {
-		this.reservasInquilino.add(r);  
+	public void agregarReserva(Reserva r) {
+		this.reservas.add(r);  
 		
 	}
 
@@ -72,20 +70,24 @@ public class Usuario extends Cuenta implements IRankeable {
 
 
 	public void agregarReservaDelPropietario(Reserva reserva) {
-		this.reservasPropietario.add(reserva);
+		this.reservas.add(reserva);
 		
 	}
 
+	public List<Reserva> obtenerAlquileres() {
+		return(reservas);
+	}
+	
 	public int obtenerCantidadDeAlquileres() {
-		return(reservasInquilino.size());
+		return(reservas.size());
 	}
 
 	public List<Reserva> reservasDeCiudad(String ciudad) {
-		return(reservasInquilino.stream().filter(reserva -> reserva.ciudadReserva() == ciudad) ).collect(Collectors.toList());
+		return(reservas.stream().filter(reserva -> reserva.ciudadReserva() == ciudad) ).collect(Collectors.toList());
 	}
 	public ArrayList<String> reservasPorCiudad() {
 		ArrayList<String> ciudadesReservas = new ArrayList<String>();
-		for(Reserva reserva:reservasInquilino) {
+		for(Reserva reserva:reservas) {
 			if(!(ciudadesReservas.contains(reserva.ciudadReserva()))) {
 				ciudadesReservas.add(reserva.ciudadReserva());
 		    }
@@ -94,34 +96,42 @@ public class Usuario extends Cuenta implements IRankeable {
 	}
 	
 	public List<Reserva> reservasFuturas() {
-		return reservasInquilino.stream().filter(reserva -> reserva.tiempoCheckInReservas().isAfter(LocalDate.now())).collect(Collectors.toList());
+		return reservas.stream().filter(reserva -> reserva.tiempoCheckInReservas().isAfter(LocalDate.now())).collect(Collectors.toList());
 	}
 
 
 	@Override
 	public void agregarRanking(Ranking r) {
-		// TODO Auto-generated method stub
+		this.rankings.add(r);
 		
 	}
 
 
 	@Override
 	public Double obtenerPuntajePromedio() {
-		// TODO Auto-generated method stub
-		return null;
+		return obtenerPuntajePromedioDeRankings(this.obtenerRankings());
 	}
-
-
+	private Double obtenerPuntajePromedioDeRankings(List<Ranking> listaDeRankings){
+		if (rankings.size() == 0){
+			return new Double(0);
+		}
+		return rankings.stream().mapToDouble((ranking) -> ranking.obtenerPuntaje()).sum() / rankings.size();
+	}
+	
 	@Override
 	public Double obtenerPuntajePromedioPorCategoria(String categoria) {
-		// TODO Auto-generated method stub
-		return null;
+		return obtenerPuntajePromedioDeRankings(
+				this.obtenerRankings().stream().filter((ranking) -> ranking.obtenerCategoria().equals(categoria)).collect(Collectors.toList()));
 	}
 
 
 	@Override
 	public List<Ranking> obtenerRankings() {
-		// TODO Auto-generated method stub
-		return null;
+		return rankings;
+	}
+
+
+	public void rankear(Ranking ranking) {
+		this.rol.rankear(ranking, this);
 	}																						
 }

@@ -33,6 +33,10 @@ public class Reserva extends Observable{
 	public LocalDate tiempoCheckInReservas() {
 		return this.publicacion.getHorarioCheckIn();
 	}
+	
+	public Usuario getUsuario() {
+		return(inquilino);
+	}
 
 	public String ciudadReserva() {
 		return this.publicacion.getCiudad();
