@@ -20,7 +20,7 @@ public class Sitio {
 		_usuarios = new ArrayList<Usuario>();
 	}
 
-	public List<String> getServicios() {
+	public List<String> obtenerServicios() {
 		return _servicios;
 	}
 
@@ -32,7 +32,7 @@ public class Sitio {
 		_tiposDeInmueble.add(tipoDeInmueble);
 	}
 
-	public List<String> getTipoDeInmueble() {
+	public List<String> obtenerTiposDeInmueble() {
 		return _tiposDeInmueble;
 	}
 
@@ -40,7 +40,7 @@ public class Sitio {
 		_categoriasDeRankeo.add(categoria);
 	}
 	
-	public List<String> getCategoriaDeRankeo() {
+	public List<String> obtenerCategoriasDeRankeo() {
 		return _categoriasDeRankeo;
 	}
 

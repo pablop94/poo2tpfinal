@@ -34,8 +34,8 @@ public class PublicacionTest {
 	
 	@Test
 	public void test_Constructor() {
-		assertEquals(publicacion.getHorarioCheckIn(), LocalDate.of(2016, 3, 20));
-		assertEquals(publicacion.getHorarioCheckOut(), LocalDate.of(2015, 3, 20));
+		assertEquals(publicacion.obtenerHorarioCheckIn(), LocalDate.of(2016, 3, 20));
+		assertEquals(publicacion.obtenerHorarioCheckOut(), LocalDate.of(2015, 3, 20));
 		assertTrue(publicacion.formasDePago().contains("Efectivo"));
 	}
 	
@@ -72,7 +72,7 @@ public class PublicacionTest {
 	public void test_laCiudadDeUnaPublicacionEsLaCiudadDeSuInmueble() {
 		when(inmueble.obtenerCiudad()).thenReturn("Avellaneda"); 
 		
-		assertEquals(publicacion.getCiudad(), "Avellaneda");
+		assertEquals(publicacion.obtenerCiudad(), "Avellaneda");
 	}
 	
 	@Test

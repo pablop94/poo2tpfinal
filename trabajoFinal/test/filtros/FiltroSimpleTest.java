@@ -39,9 +39,9 @@ public class FiltroSimpleTest {
 	@Test
 	public void test_filtroPorCiudadDevuelveLasPublicacionesConIgualCiudad() {
 		filtroPorCiudad = new FiltroPorCiudad("Avellaneda");
-		when(publicacion1.getCiudad()).thenReturn("Avellaneda");
-		when(publicacion2.getCiudad()).thenReturn("Rosario");
-		when(publicacion3.getCiudad()).thenReturn("Avellaneda");
+		when(publicacion1.obtenerCiudad()).thenReturn("Avellaneda");
+		when(publicacion2.obtenerCiudad()).thenReturn("Rosario");
+		when(publicacion3.obtenerCiudad()).thenReturn("Avellaneda");
 
 		List<Publicacion> listaResultado = filtroPorCiudad.filtrar(lista);
 		
@@ -53,9 +53,9 @@ public class FiltroSimpleTest {
 	@Test
 	public void test_filtroPorHorarioCheckInDevuelveLasPublicacionesConIgualHorarioCheckIn() {
 		filtroPorHorarioCheckIn = new FiltroPorHorarioCheckIn(LocalDate.of(2017, 05, 14));
-		when(publicacion1.getHorarioCheckIn()).thenReturn(LocalDate.of(2017, 05, 14));
-		when(publicacion2.getHorarioCheckIn()).thenReturn(LocalDate.of(2022, 05, 14));
-		when(publicacion3.getHorarioCheckIn()).thenReturn(LocalDate.of(2013, 05, 14));
+		when(publicacion1.obtenerHorarioCheckIn()).thenReturn(LocalDate.of(2017, 05, 14));
+		when(publicacion2.obtenerHorarioCheckIn()).thenReturn(LocalDate.of(2022, 05, 14));
+		when(publicacion3.obtenerHorarioCheckIn()).thenReturn(LocalDate.of(2013, 05, 14));
 
 		List<Publicacion> listaResultado = filtroPorHorarioCheckIn.filtrar(lista);
 		
@@ -66,9 +66,9 @@ public class FiltroSimpleTest {
 	@Test
 	public void test_filtroPorHorarioCheckOutDevuelveLasPublicacionesConIgualHorarioCheckOut() {
 		FiltroPorHorarioCheckOut filtroPorHorarioCheckOut = new FiltroPorHorarioCheckOut(LocalDate.of(2017, 05, 14));
-		when(publicacion1.getHorarioCheckOut()).thenReturn(LocalDate.of(2017, 05, 14));
-		when(publicacion2.getHorarioCheckOut()).thenReturn(LocalDate.of(2022, 05, 14));
-		when(publicacion3.getHorarioCheckOut()).thenReturn(LocalDate.of(2013, 05, 14));
+		when(publicacion1.obtenerHorarioCheckOut()).thenReturn(LocalDate.of(2017, 05, 14));
+		when(publicacion2.obtenerHorarioCheckOut()).thenReturn(LocalDate.of(2022, 05, 14));
+		when(publicacion3.obtenerHorarioCheckOut()).thenReturn(LocalDate.of(2013, 05, 14));
 
 		List<Publicacion> listaResultado = filtroPorHorarioCheckOut.filtrar(lista);
 		

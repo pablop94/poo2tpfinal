@@ -23,22 +23,22 @@ public class SitioTest {
 	@Test
 	public void test_agregarServicioAgregaUnServicioAlSitio() {
 		sitio.agregarServicio("WiFi");
-		assertTrue(sitio.getServicios().size() == 1);
-		assertTrue(sitio.getServicios().contains("WiFi"));
+		assertTrue(sitio.obtenerServicios().size() == 1);
+		assertTrue(sitio.obtenerServicios().contains("WiFi"));
 	}
 
 	@Test
 	public void test_agregarTipoDeInmuebleAgregaUnTipoDeInmuebleAlSitio() {
 		sitio.agregarTipoDeInmueble("Carpa");
-		assertTrue(sitio.getTipoDeInmueble().size() == 1);
-		assertTrue(sitio.getTipoDeInmueble().contains("Carpa"));
+		assertTrue(sitio.obtenerTiposDeInmueble().size() == 1);
+		assertTrue(sitio.obtenerTiposDeInmueble().contains("Carpa"));
 	}
 	
 	@Test
 	public void test_agregarCategoriaDeRankeoAgregaUnaCategoriaDeRankeoAlSitio() {
 		sitio.agregarCategoriaDeRankeo("Llega borracho");
-		assertTrue(sitio.getCategoriaDeRankeo().size() == 1);
-		assertTrue(sitio.getCategoriaDeRankeo().contains("Llega borracho"));
+		assertTrue(sitio.obtenerCategoriasDeRankeo().size() == 1);
+		assertTrue(sitio.obtenerCategoriasDeRankeo().contains("Llega borracho"));
 	}
 	
 	@Test

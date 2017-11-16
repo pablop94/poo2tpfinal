@@ -32,8 +32,8 @@ public class Reserva extends Observable{
 		return estaConfirmada;
 	}
 	
-	public LocalDate tiempoCheckInReservas() {
-		return this.publicacion.getHorarioCheckIn();
+	public LocalDate obtenerhorarioCheckIn() {
+		return this.publicacion.obtenerHorarioCheckIn();
 	}
 	
 	public Usuario obtenerInquilino() {
@@ -44,8 +44,8 @@ public class Reserva extends Observable{
 		return this.publicacion.obtenerPropietario();
 	}
 
-	public String ciudadReserva() {
-		return this.publicacion.getCiudad();
+	public String obtenerCiudad() {
+		return this.publicacion.obtenerCiudad();
 	}
 
 }

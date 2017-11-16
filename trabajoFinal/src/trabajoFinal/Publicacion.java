@@ -17,19 +17,19 @@ public class Publicacion extends Observable{
 	private Precio precio;
 	
 
-	public String getCiudad() {
-		return this.getInmueble().obtenerCiudad();
+	public String obtenerCiudad() {
+		return this.obtenerInmueble().obtenerCiudad();
 	}
 
-	private Inmueble getInmueble() {
+	private Inmueble obtenerInmueble() {
 		return inmueble;
 	}
 	
-	public LocalDate getHorarioCheckOut() {
+	public LocalDate obtenerHorarioCheckOut() {
 		return horarioCheckOut;
 	}
 
-	public LocalDate getHorarioCheckIn() {
+	public LocalDate obtenerHorarioCheckIn() {
 		return horarioCheckIn;
 	}
 		
@@ -56,7 +56,7 @@ public class Publicacion extends Observable{
 	}
 
 	public Integer obtenerCantidadDeHuespedes() {
-		return this.getInmueble().obtenerCapacidad();
+		return this.obtenerInmueble().obtenerCapacidad();
 	}
 
 	public List<String> formasDePago() {
@@ -73,6 +73,6 @@ public class Publicacion extends Observable{
 	}
 
 	public Usuario obtenerPropietario() {
-		return this.getInmueble().obtenerPropietario();
+		return this.obtenerInmueble().obtenerPropietario();
 	}
 }

@@ -101,13 +101,13 @@ public class UsuarioTest {
 	public void test_reservasDeCiudad() {
 		List<Reserva> lista = new ArrayList<Reserva>();
 		Reserva reserva1 = mock(Reserva.class);
-		when(reserva1.ciudadReserva()).thenReturn("Avellaneda");
+		when(reserva1.obtenerCiudad()).thenReturn("Avellaneda");
 		
 		Reserva reserva2 = mock(Reserva.class);
-		when(reserva2.ciudadReserva()).thenReturn("Avellaneda");
+		when(reserva2.obtenerCiudad()).thenReturn("Avellaneda");
 		
 		Reserva reserva3 = mock(Reserva.class);
-		when(reserva3.ciudadReserva()).thenReturn("Quilmes");
+		when(reserva3.obtenerCiudad()).thenReturn("Quilmes");
 
 		lista.add(reserva1);
 		lista.add(reserva2);
@@ -124,13 +124,13 @@ public class UsuarioTest {
 	public void test_reservasPorCiudad() {
 		List<Reserva> lista = new ArrayList<Reserva>();
 		Reserva reserva1 = mock(Reserva.class);
-		when(reserva1.ciudadReserva()).thenReturn("Avellaneda");
+		when(reserva1.obtenerCiudad()).thenReturn("Avellaneda");
 		
 		Reserva reserva2 = mock(Reserva.class);
-		when(reserva2.ciudadReserva()).thenReturn("Avellaneda");
+		when(reserva2.obtenerCiudad()).thenReturn("Avellaneda");
 		
 		Reserva reserva3 = mock(Reserva.class);
-		when(reserva3.ciudadReserva()).thenReturn("Quilmes");
+		when(reserva3.obtenerCiudad()).thenReturn("Quilmes");
 
 		lista.add(reserva1);
 		lista.add(reserva2);
@@ -152,13 +152,13 @@ public class UsuarioTest {
 	public void test_reservasFuturas() {
 		List<Reserva> lista = new ArrayList<Reserva>();
 		Reserva reserva1 = mock(Reserva.class);
-		when(reserva1.tiempoCheckInReservas()).thenReturn(LocalDate.now().plusDays(15));
+		when(reserva1.obtenerhorarioCheckIn()).thenReturn(LocalDate.now().plusDays(15));
 		
 		Reserva reserva2 = mock(Reserva.class);
-		when(reserva2.tiempoCheckInReservas()).thenReturn(LocalDate.now().plusDays(15));
+		when(reserva2.obtenerhorarioCheckIn()).thenReturn(LocalDate.now().plusDays(15));
 		
 		Reserva reserva3 = mock(Reserva.class);
-		when(reserva3.tiempoCheckInReservas()).thenReturn(LocalDate.now());
+		when(reserva3.obtenerhorarioCheckIn()).thenReturn(LocalDate.now());
 		
 		lista.add(reserva1);
 		lista.add(reserva2);

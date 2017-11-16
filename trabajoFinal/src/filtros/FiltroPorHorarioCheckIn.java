@@ -14,7 +14,7 @@ public class FiltroPorHorarioCheckIn extends FiltroSimple {
 
 	@Override
 	protected Boolean coincide(Publicacion publicacion) {
-		return this.valor.equals(publicacion.getHorarioCheckIn());
+		return this.valor.equals(publicacion.obtenerHorarioCheckIn());
 	}
 
 }

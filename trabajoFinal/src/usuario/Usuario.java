@@ -62,13 +62,13 @@ public class Usuario extends Cuenta implements IRankeable {
 	}
 
 	public List<Reserva> reservasDeCiudad(String ciudad) {
-		return(this.obtenerReservas().stream().filter(reserva -> reserva.ciudadReserva().equals(ciudad)) ).collect(Collectors.toList());
+		return(this.obtenerReservas().stream().filter(reserva -> reserva.obtenerCiudad().equals(ciudad)) ).collect(Collectors.toList());
 	}
 	
 	public Map<String, List<Reserva>> reservasPorCiudad() {
 		Map<String, List<Reserva>> reservasPorCiudad = new HashMap<String, List<Reserva>>();
 		//Obtengo las ciudades sin repetidos
-		List<String> ciudadesReservas = this.obtenerReservas().stream().map((reserva) -> reserva.ciudadReserva()).distinct().collect(Collectors.toList());
+		List<String> ciudadesReservas = this.obtenerReservas().stream().map((reserva) -> reserva.obtenerCiudad()).distinct().collect(Collectors.toList());
 		
 		//Para cada ciudad, obtengo la lista de reservas		
 		for (String ciudad: ciudadesReservas){
@@ -79,7 +79,7 @@ public class Usuario extends Cuenta implements IRankeable {
 	}
 	
 	public List<Reserva> reservasFuturas() {
-		return this.obtenerReservas().stream().filter(reserva -> reserva.tiempoCheckInReservas().isAfter(LocalDate.now())).collect(Collectors.toList());
+		return this.obtenerReservas().stream().filter(reserva -> reserva.obtenerhorarioCheckIn().isAfter(LocalDate.now())).collect(Collectors.toList());
 	}
 	
 	public List<Reserva> obtenerReservas() {

@@ -3,6 +3,8 @@ package trabajoFinal;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import java.time.LocalDate;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -35,10 +37,28 @@ public class ReservaTest {
 	}
 	
 	@Test
+	public void test_obtenerInquilino() {
+		assertEquals(reserva.obtenerInquilino(), inquilino);
+	}
+	
+	@Test
+	public void test_elHorarioDeCheckInDeLaReservaEsElDeSuPublicacion() {
+		when(publicacion.obtenerHorarioCheckIn()).thenReturn(LocalDate.MAX);
+		assertEquals(reserva.obtenerhorarioCheckIn(), LocalDate.MAX);
+	}
+	
+	@Test
 	public void test_elPropietarioDeLaReservaEsElDeLaPublicacion() {
 		when(publicacion.obtenerPropietario()).thenReturn(propietario);
 		
 		assertEquals(reserva.obtenerPropietario(), propietario);
+	}
+	
+	@Test
+	public void test_laCiudadDeLaReservaEsLaCiudadDeLaPublicacion() {
+		when(publicacion.obtenerCiudad()).thenReturn("Catamarca");
+		
+		assertEquals(reserva.obtenerCiudad(), "Catamarca");
 	}
 	
 	@Test

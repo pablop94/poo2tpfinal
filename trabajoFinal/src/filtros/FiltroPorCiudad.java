@@ -12,7 +12,7 @@ public class FiltroPorCiudad extends FiltroSimple{
 
 	@Override
 	protected Boolean coincide(Publicacion publicacion) {
-		return this.valor.equals(publicacion.getCiudad());
+		return this.valor.equals(publicacion.obtenerCiudad());
 	}
 	
 }
