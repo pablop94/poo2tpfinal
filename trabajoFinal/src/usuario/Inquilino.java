@@ -9,22 +9,24 @@ import trabajoFinal.Ranking;
 import trabajoFinal.Reserva;
 
 public class Inquilino extends Rol {
+	
 	@Override
 	public String tipoDeRanking(){
-		// TODO Auto-generated method stub
-		return null;
+		return "inquilino";
 	}
 
 	@Override
 	public List<Ranking> obtenerRankingsDe(Usuario usuario) {
-		// TODO Auto-generated method stub
-		return null;
+		return usuario.obtenerTodosLosRankings().stream()
+				.filter((ranking) -> ranking.tipoDeRanking().equals(this.tipoDeRanking()))
+				.collect(Collectors.toList());
 	}
 
 	@Override
 	public List<Reserva> obtenerReservasDe(Usuario usuario) {
-		// TODO Auto-generated method stub
-		return null;
+		return usuario.obtenerTodasLasReservas().stream()
+				.filter((reserva) -> reserva.obtenerInquilino().equals(usuario))
+				.collect(Collectors.toList());
 	}
 
 
