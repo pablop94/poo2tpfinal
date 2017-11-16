@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import usuario.Usuario;
+
 public class InmuebleTest {
 	Inmueble inmueble;
 	Usuario usuario;
@@ -32,15 +34,15 @@ public class InmuebleTest {
 
 	@Test
 	public void test_constructorInmueble() {
-		assertEquals(inmueble.getPropietario(), usuario);
-		assertEquals(inmueble.getDireccion(), "/home");
-		assertEquals(inmueble.getServicios(), servicios);
-		assertEquals(inmueble.getTipoDeInmueble(), "Carpa");
-		assertEquals(inmueble.getPais(), "Dinamarca");
-		assertEquals(inmueble.getCiudad(), "Tristan Suarez");
-		assertEquals(inmueble.getSuperficie(), new Double(5));
-		assertEquals(inmueble.getFotos(), "Foto fea");
-		assertEquals(inmueble.getCapacidad(), new Integer(74));
+		assertEquals(inmueble.obtenerPropietario(), usuario);
+		assertEquals(inmueble.obtenerDireccion(), "/home");
+		assertEquals(inmueble.obtenerServicios(), servicios);
+		assertEquals(inmueble.obtenerTipoDeInmueble(), "Carpa");
+		assertEquals(inmueble.obtenerPais(), "Dinamarca");
+		assertEquals(inmueble.obtenerCiudad(), "Tristan Suarez");
+		assertEquals(inmueble.obtenerSuperficie(), new Double(5));
+		assertEquals(inmueble.obtenerFotos(), "Foto fea");
+		assertEquals(inmueble.obtenerCapacidad(), new Integer(74));
 		
 	}
 	
@@ -96,4 +98,8 @@ public class InmuebleTest {
 		assertTrue(inmueble.obtenerPuntajePromedioPorCategoria("Categoria4").equals(new Double(0)));
 	}
 
+	@Test
+	public void test_elTipoDeRankingDeUnInmuebleEsinmueble() {
+		assertTrue(inmueble.tipoDeRanking().equals("inmueble"));
+	}
 }

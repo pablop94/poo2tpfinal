@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import filtros.Filtro;
+import usuario.Usuario;
 
 public class Sitio {
 

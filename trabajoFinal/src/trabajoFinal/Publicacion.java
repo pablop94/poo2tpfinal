@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import usuario.Usuario;
+
 public class Publicacion extends Observable{
 
 	private Inmueble inmueble;
@@ -16,7 +18,7 @@ public class Publicacion extends Observable{
 	
 
 	public String getCiudad() {
-		return this.getInmueble().getCiudad();
+		return this.getInmueble().obtenerCiudad();
 	}
 
 	private Inmueble getInmueble() {
@@ -49,12 +51,12 @@ public class Publicacion extends Observable{
 	}
 	
 	public void reservar (LocalDate fechaInicial, LocalDate fechaFinal,ArrayList<String> formaDePago,Usuario inquilino) {
-		this.inmueble.getPropietario().notificarPorMailIntentoDeReserva(fechaInicial, fechaFinal, formaDePago, inquilino);
+		this.inmueble.obtenerPropietario().notificarPorMailIntentoDeReserva(fechaInicial, fechaFinal, formaDePago, inquilino);
 		
 	}
 
 	public Integer obtenerCantidadDeHuespedes() {
-		return this.getInmueble().getCapacidad();
+		return this.getInmueble().obtenerCapacidad();
 	}
 
 	public List<String> formasDePago() {
@@ -68,5 +70,9 @@ public class Publicacion extends Observable{
 			this.setChanged();
 			this.notifyObservers();
 		}
+	}
+
+	public Usuario obtenerPropietario() {
+		return this.getInmueble().obtenerPropietario();
 	}
 }

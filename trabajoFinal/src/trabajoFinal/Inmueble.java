@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import usuario.Usuario;
+
 public class Inmueble implements IRankeable{
 	private Usuario propietario;
 	private String direccion;
@@ -30,39 +32,39 @@ public class Inmueble implements IRankeable{
 		this.rankings = new ArrayList<>();
 	}
 
-	public Usuario getPropietario() {
+	public Usuario obtenerPropietario() {
 		return(this.propietario);
 	}
 	
-	public String getDireccion() {
+	public String obtenerDireccion() {
 		return(this.direccion);
 	}
 	
-	public List<String> getServicios() {
+	public List<String> obtenerServicios() {
 		return(this.servicios);
 	}
 	
-	public String getTipoDeInmueble() {
+	public String obtenerTipoDeInmueble() {
 		return(this.tipoDeInmueble);
 	}
 	
-	public String getPais() {
+	public String obtenerPais() {
 		return(this.pais);
 	}
 	
-	public String getCiudad() {
+	public String obtenerCiudad() {
 		return(this.ciudad);
 	}
 	
-	public Double getSuperficie() {
+	public Double obtenerSuperficie() {
 		return(this.superficie);
 	}
 
-	public String getFotos() {
+	public String obtenerFotos() {
 		return(this.fotos);
 	}
 	
-	public Integer getCapacidad() {
+	public Integer obtenerCapacidad() {
 		return(this.capacidad);
 	}
 
@@ -92,6 +94,11 @@ public class Inmueble implements IRankeable{
 			return new Double(0);
 		}
 		return listaDeRankings.stream().mapToDouble((ranking) -> ranking.obtenerPuntaje()).sum() / listaDeRankings.size();
+	}
+
+	@Override
+	public String tipoDeRanking() {
+		return "inmueble";
 	}
 }
 

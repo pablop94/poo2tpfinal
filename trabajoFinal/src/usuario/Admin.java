@@ -1,4 +1,4 @@
-package trabajoFinal;
+package usuario;
 
 public class Admin extends Cuenta {
 

@@ -3,26 +3,30 @@ package trabajoFinal;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import usuario.Usuario;
+
 import static org.mockito.Mockito.*;
 
 public class RankingTest {
 	
 	Ranking ranking;
-	IRankeable inmueble;
+	IRankeable entidad;
 	Puntuacion puntuacion;
 	Usuario rankeador;
 	
 	@Before
 	public void setUp() throws Exception {
-		inmueble = mock(IRankeable.class);
+		entidad = mock(IRankeable.class);
+		when(entidad.tipoDeRanking()).thenReturn("tipoDeRankingTest");
 		puntuacion = mock(Puntuacion.class);
 		rankeador = mock(Usuario.class);
-		ranking = new Ranking(inmueble, puntuacion, rankeador);
+		ranking = new Ranking(entidad, puntuacion, rankeador);
 	}
 
 	@Test
 	public void test_constuctor() {
-		assertEquals(ranking.obtenerEntidad(), inmueble);
+		assertEquals(ranking.obtenerEntidad(), entidad);
 		assertEquals(ranking.obtenerPuntuacion(), puntuacion);
 		assertEquals(ranking.obtenerRankeador(), rankeador);
 	}
@@ -37,5 +41,10 @@ public class RankingTest {
 	public void test_laCategoriaDeUnRankingEsLaCategoriaDeSuPuntuacion() {
 		when(puntuacion.obtenerCategoria()).thenReturn("Llega Borracho");
 		assertEquals(ranking.obtenerCategoria(), "Llega Borracho");
+	}
+	
+	@Test
+	public void test_elTipoDeRankingDeLaReservaEsElTipoDeRankingDeLaEntidad() {
+		assertEquals(ranking.tipoDeRanking(), "tipoDeRankingTest");
 	}
 }

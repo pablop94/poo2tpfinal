@@ -5,6 +5,5 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/home/pablo/UNQ/poo2tpfinal/mockito-all-1.10.19.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fedes/Desktop/Tp version final sin modificar/poo2tpfinal-master/mockito-all-1.10.19.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

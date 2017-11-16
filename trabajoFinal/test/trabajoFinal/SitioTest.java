@@ -42,16 +42,8 @@ public class SitioTest {
 	}
 	
 	@Test
-	public void test_elListadoDeGestionTieneLosUsuarios() {
-		Usuario user = mock(Usuario.class);
-		List<Usuario> resultado = sitio.obtenerListadoDeGestion();
-		assertTrue(resultado.size() == 0);
-		sitio.agregarUsuario(user);
-		resultado = sitio.obtenerListadoDeGestion();
-		
-		assertTrue(resultado.size() == 1);
-		
-		assertTrue(resultado.contains(user));
+	public void test_elListadoDeGestion() {
+		fail("Not implemented");
 	}
 	
 	@Test

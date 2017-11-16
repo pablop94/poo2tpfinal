@@ -12,4 +12,6 @@ public interface IRankeable {
 	
 	public List<Ranking> obtenerRankings();
 	
+	public String tipoDeRanking();
+	
 }
