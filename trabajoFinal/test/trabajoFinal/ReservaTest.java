@@ -7,7 +7,6 @@ import java.time.LocalDate;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 
 import usuario.Usuario;
 
@@ -22,6 +21,7 @@ public class ReservaTest {
 		publicacion = mock(Publicacion.class);
 		inquilino = mock(Usuario.class);
 		propietario = mock(Usuario.class);
+		formaDePagar = "Tarjeta";
 		reserva = new Reserva(publicacion, inquilino,formaDePagar);
 	}
 
@@ -39,6 +39,11 @@ public class ReservaTest {
 	@Test
 	public void test_obtenerInquilino() {
 		assertEquals(reserva.obtenerInquilino(), inquilino);
+	}
+	
+	@Test
+	public void test_obtenerFormaDePago() {
+		assertEquals(reserva.obtenerFormaDePago(), "Tarjeta");
 	}
 	
 	@Test

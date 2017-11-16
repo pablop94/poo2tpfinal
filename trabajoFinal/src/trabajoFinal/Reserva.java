@@ -43,6 +43,10 @@ public class Reserva extends Observable{
 	public Usuario obtenerPropietario() {
 		return this.publicacion.obtenerPropietario();
 	}
+	
+	public String obtenerFormaDePago() {
+		return this.formaDePago;
+	}
 
 	public String obtenerCiudad() {
 		return this.publicacion.obtenerCiudad();
