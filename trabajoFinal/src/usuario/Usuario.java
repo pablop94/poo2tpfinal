@@ -16,7 +16,6 @@ import trabajoFinal.MailServer;
 import trabajoFinal.Publicacion;
 import trabajoFinal.Ranking;
 import trabajoFinal.Reserva;
-import trabajoFinal.Sitio;
 
 public class Usuario extends Cuenta implements IRankeable, Observer {
 
