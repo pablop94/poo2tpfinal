@@ -6,15 +6,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.stream.Collectors;
 
 import trabajoFinal.IRankeable;
 import trabajoFinal.Inmueble;
+import trabajoFinal.MailServer;
 import trabajoFinal.Publicacion;
 import trabajoFinal.Ranking;
 import trabajoFinal.Reserva;
+import trabajoFinal.Sitio;
 
-public class Usuario extends Cuenta implements IRankeable {
+public class Usuario extends Cuenta implements IRankeable, Observer {
 
 	private Rol rol;
 	private List<Publicacion> publicaciones;
@@ -22,8 +26,9 @@ public class Usuario extends Cuenta implements IRankeable {
 	private List<Reserva> reservas;
 	private List<Ranking> rankings;
 	private LocalDate ingresoAlSistema;
+	private MailServer mailServer;
 	
-	public Usuario(String nombre, String mail, String numeroTelefono, Rol rol) {
+	public Usuario(String nombre, String mail, String numeroTelefono, Rol rol, MailServer mailServer) {
 		super(nombre, mail, numeroTelefono);
 		this.inmuebles= new ArrayList<Inmueble>();
 		this.reservas= new ArrayList<Reserva>();
@@ -31,9 +36,9 @@ public class Usuario extends Cuenta implements IRankeable {
 		this.rankings= new ArrayList<Ranking>();
 		this.rol= rol;
 		this.ingresoAlSistema = LocalDate.now();
+		this.mailServer = mailServer;
 	}
 
-	
 	public void agregarInmueble(Inmueble inmueble) {
 		this.inmuebles.add(inmueble);
 		
@@ -146,12 +151,23 @@ public class Usuario extends Cuenta implements IRankeable {
 		return ChronoUnit.DAYS.between(this.ingresoAlSistema, LocalDate.now());
 	}
 
-	
-	public void notificarPorMailIntentoDeReserva(LocalDate fechaInicial, LocalDate fechaFinal,
-			ArrayList<String> formaDePago, Usuario inquilino) {
+	public void notificarPorMailIntentoDeReserva(Reserva reserva) {
+		mailServer.sendMail(this.obtenerMail(), 
+							"Tenes una nueva reserva!", 
+							"El usuario " + reserva.obtenerInquilino().obtenerNombre() + 
+							" ha realizado una reserva en tu inmueble");
 	}
 
-	public void notificarPorMailIntentoDeReserva(Reserva reserva) {
-		//this.rol.agregarReservaPropietario(reserva, this);
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void notificarPorMailReservaConfirmada(Reserva reserva) {
+		mailServer.sendMail(this.obtenerMail(), 
+				"Tu reserva se confirmo!", 
+				"El propietario acepto tu reserva!");
 	}
 }

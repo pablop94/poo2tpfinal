@@ -49,11 +49,11 @@ public class Publicacion extends Observable{
 	public Double obtenerPrecioEn(LocalDate fecha) {
 		return this.precio.obtenerPrecioEn(fecha);
 	}
-	
+	/*
 	public void reservar (LocalDate fechaInicial, LocalDate fechaFinal,ArrayList<String> formaDePago,Usuario inquilino) {
 		this.inmueble.obtenerPropietario().notificarPorMailIntentoDeReserva(fechaInicial, fechaFinal, formaDePago, inquilino);
 		
-	}
+	}*/
 
 	public Integer obtenerCantidadDeHuespedes() {
 		return this.obtenerInmueble().obtenerCapacidad();

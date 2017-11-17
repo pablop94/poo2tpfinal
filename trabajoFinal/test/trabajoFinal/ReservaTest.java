@@ -22,6 +22,7 @@ public class ReservaTest {
 		inquilino = mock(Usuario.class);
 		propietario = mock(Usuario.class);
 		formaDePagar = "Tarjeta";
+		when(publicacion.obtenerPropietario()).thenReturn(propietario);
 		reserva = new Reserva(publicacion, inquilino,formaDePagar);
 	}
 
@@ -69,7 +70,9 @@ public class ReservaTest {
 	@Test
 	public void test_cuandoSeCreaUnaReservaElInquilinoYPropietarioSonInformados() {
 		Reserva reserva2 = new Reserva(publicacion, inquilino, formaDePagar);
-		fail("Not implemented");
+		verify(propietario, times(1)).agregarReserva(reserva2);
+		verify(propietario, times(1)).notificarPorMailIntentoDeReserva(reserva2);
+		verify(inquilino, times(1)).agregarReserva(reserva2);
 	}
 
 }

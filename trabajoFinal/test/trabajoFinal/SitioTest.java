@@ -9,15 +9,19 @@ import org.junit.Before;
 import org.junit.Test;
  
 import filtros.Filtro;
+import usuario.Usuario;
+
 import static org.mockito.Mockito.*;
 
 public class SitioTest {
 	Sitio sitio;
 	Filtro filtro;
+	private Usuario usuario;
 	@Before
 	public void setUp() throws Exception {
 		sitio = new Sitio();
 		filtro = mock(Filtro.class);
+		usuario = mock(Usuario.class);
 	}
 
 	@Test
@@ -42,8 +46,11 @@ public class SitioTest {
 	}
 	
 	@Test
-	public void test_elListadoDeGestion() {
-		fail("Not implemented");
+	public void test_obtenerUsuarios() {
+		sitio.agregarUsuario(usuario);
+
+		assertEquals(sitio.obtenerUsuarios().size(), 1);
+		assertTrue(sitio.obtenerUsuarios().contains(usuario));
 	}
 	
 	@Test

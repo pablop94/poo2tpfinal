@@ -44,7 +44,7 @@ public class PublicacionTest {
 		publicacion.ingresarAjuste(ajuste);
 		verify(precio, times(1)).ingresarAjuste(ajuste);
 	}
-	
+	/*
 	@Test
 	public void testReservar_notificaAlInquilinoConUnMail() {
 		when(inmueble.obtenerPropietario()).thenReturn(usuario); 
@@ -52,7 +52,7 @@ public class PublicacionTest {
 		
 		verify(usuario, times(1)).notificarPorMailIntentoDeReserva(LocalDate.of(2016, 3, 20), LocalDate.of(2015, 3, 20), formaDePago, usuario2);
 		
-	}
+	}*/
 
 	@Test
 	public void test_elPrecioDeLaPublicacionEnUnaFechaEsElDeSuPrecio() {

@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import trabajoFinal.Inmueble;
+import trabajoFinal.MailServer;
 import trabajoFinal.Publicacion;
 import trabajoFinal.Ranking;
 import trabajoFinal.Reserva;
@@ -26,16 +27,25 @@ public class UsuarioTest {
 	private Ranking ranking;
 	private Ranking ranking2;
 	private Ranking ranking3;
+	private MailServer mailServer;
+	private Reserva reserva1;
+	private Reserva reserva2;
+	private Reserva reserva3;
+	
 	
 	@Before
 	public void setUp(){
 		rol = mock(Rol.class);
-		usuario = new Usuario("Tobias", "mail1", "42424", rol);
+		mailServer = mock(MailServer.class);
+		usuario = new Usuario("Tobias", "mail1", "42424", rol, mailServer);
 		inmueble = mock(Inmueble.class);
 		publicacion = mock(Publicacion.class);
 		ranking = mock(Ranking.class);
 		ranking2 = mock(Ranking.class);
 		ranking3 = mock(Ranking.class);
+		reserva1 = mock(Reserva.class);
+		reserva2 = mock(Reserva.class);
+		reserva3 = mock(Reserva.class);
 		
 		when(ranking.obtenerPuntaje()).thenReturn(new Double(10));
 		when(ranking2.obtenerPuntaje()).thenReturn(new Double(20));
@@ -100,13 +110,8 @@ public class UsuarioTest {
 	@Test
 	public void test_reservasDeCiudad() {
 		List<Reserva> lista = new ArrayList<Reserva>();
-		Reserva reserva1 = mock(Reserva.class);
 		when(reserva1.obtenerCiudad()).thenReturn("Avellaneda");
-		
-		Reserva reserva2 = mock(Reserva.class);
 		when(reserva2.obtenerCiudad()).thenReturn("Avellaneda");
-		
-		Reserva reserva3 = mock(Reserva.class);
 		when(reserva3.obtenerCiudad()).thenReturn("Quilmes");
 
 		lista.add(reserva1);
@@ -123,13 +128,8 @@ public class UsuarioTest {
 	@Test
 	public void test_reservasPorCiudad() {
 		List<Reserva> lista = new ArrayList<Reserva>();
-		Reserva reserva1 = mock(Reserva.class);
 		when(reserva1.obtenerCiudad()).thenReturn("Avellaneda");
-		
-		Reserva reserva2 = mock(Reserva.class);
 		when(reserva2.obtenerCiudad()).thenReturn("Avellaneda");
-		
-		Reserva reserva3 = mock(Reserva.class);
 		when(reserva3.obtenerCiudad()).thenReturn("Quilmes");
 
 		lista.add(reserva1);
@@ -151,13 +151,8 @@ public class UsuarioTest {
 	@Test
 	public void test_reservasFuturas() {
 		List<Reserva> lista = new ArrayList<Reserva>();
-		Reserva reserva1 = mock(Reserva.class);
 		when(reserva1.obtenerhorarioCheckIn()).thenReturn(LocalDate.now().plusDays(15));
-		
-		Reserva reserva2 = mock(Reserva.class);
 		when(reserva2.obtenerhorarioCheckIn()).thenReturn(LocalDate.now().plusDays(15));
-		
-		Reserva reserva3 = mock(Reserva.class);
 		when(reserva3.obtenerhorarioCheckIn()).thenReturn(LocalDate.now());
 		
 		lista.add(reserva1);
@@ -180,11 +175,10 @@ public class UsuarioTest {
 	
 	@Test
 	public void test_agregarReserva() {
-		Reserva reserva = mock(Reserva.class);
-		usuario.agregarReserva(reserva);
+		usuario.agregarReserva(reserva1);
 		
 		assertEquals(usuario.obtenerTodasLasReservas().size(), 1);				
-		assertTrue(usuario.obtenerTodasLasReservas().contains(reserva));
+		assertTrue(usuario.obtenerTodasLasReservas().contains(reserva1));
 	}
 	
 	@Test
@@ -250,4 +244,31 @@ public class UsuarioTest {
 		assertEquals(usuario.obtenerRankings(),rankings);
 		verify(rol, times(1)).obtenerRankingsDe(usuario);
 	}
+	
+	@Test
+	public void test_elEnvioDeMailSeHaceAtravesDelMailServer() {
+		Usuario inquilino = mock(Usuario.class);
+		when(inquilino.obtenerNombre()).thenReturn("nombreDelInquilino");
+
+		Usuario propietario = mock(Usuario.class);
+		when(propietario.obtenerMail()).thenReturn("propietario@gmail.com");
+
+		when(reserva1.obtenerInquilino()).thenReturn(inquilino);
+		when(reserva1.obtenerPropietario()).thenReturn(propietario);
+		usuario.notificarPorMailIntentoDeReserva(reserva1);
+		
+		verify(mailServer, times(1)).sendMail(usuario.obtenerMail(), 
+												"Tenes una nueva reserva!", 
+												"El usuario nombreDelInquilino ha realizado una reserva en tu inmueble");
+	}
+	
+	@Test
+	public void test_envioDeMailReservaConfirmada() {
+		usuario.notificarPorMailReservaConfirmada(reserva1);
+		
+		verify(mailServer, times(1)).sendMail(usuario.obtenerMail(), 
+												"Tu reserva se confirmo!", 
+												"El propietario acepto tu reserva!");
+	}
+	
 }

@@ -44,7 +44,7 @@ public class Sitio {
 		return _categoriasDeRankeo;
 	}
 
-	public List<Usuario> obtenerListadoDeGestion() {
+	public List<Usuario> obtenerUsuarios() {
 		return _usuarios;
 	}
 

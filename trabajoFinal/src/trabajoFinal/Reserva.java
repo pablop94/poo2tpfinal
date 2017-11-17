@@ -17,15 +17,14 @@ public class Reserva extends Observable{
 		this.inquilino=inquilino;
 		this.formaDePago=formaDePagar;
 		this.estaConfirmada= false;
+		this.obtenerInquilino().agregarReserva(this);
+		this.obtenerPropietario().agregarReserva(this);
+		this.obtenerPropietario().notificarPorMailIntentoDeReserva(this);
 	}
 	
 	public void aceptarReserva() {
 		estaConfirmada=true;
-	}
-
-	public void enviarMailDeConfirmacion() {
-		
-		//this.inquilino.enviarMailConfirmando
+		this.obtenerInquilino().notificarPorMailReservaConfirmada(this);
 	}
 
 	public Boolean estaConfirmada() {
