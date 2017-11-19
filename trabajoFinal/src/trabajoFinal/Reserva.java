@@ -5,7 +5,6 @@ import java.util.Observable;
 
 import usuario.Usuario;
 
-//Falta Implementar "EnviarMailDeConfirmacion"
 public class Reserva extends Observable{
 	private Publicacion publicacion;
 	private Usuario inquilino;
@@ -20,9 +19,10 @@ public class Reserva extends Observable{
 		this.obtenerInquilino().agregarReserva(this);
 		this.obtenerPropietario().agregarReserva(this);
 		this.obtenerPropietario().notificarPorMailIntentoDeReserva(this);
+		this.publicacion.notifyObservers("NuevaReserva");
 	}
 	
-	public void aceptarReserva() {
+	public void aceptar() {
 		estaConfirmada=true;
 		this.obtenerInquilino().notificarPorMailReservaConfirmada(this);
 	}
@@ -49,6 +49,16 @@ public class Reserva extends Observable{
 
 	public String obtenerCiudad() {
 		return this.publicacion.obtenerCiudad();
+	}
+
+	public void cancelar() {
+		this.notifyObservers("Cancelacion");
+	}
+	
+	@Override
+	public void notifyObservers(Object arg){
+		this.setChanged();
+		super.notifyObservers(arg);
 	}
 
 }

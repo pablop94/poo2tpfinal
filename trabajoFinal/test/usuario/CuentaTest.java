@@ -6,15 +6,13 @@ import static org.mockito.Mockito.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import trabajoFinal.MailServer;
-
 public class CuentaTest {
 
 	private Cuenta cuenta;
 
 	@Before
 	public void setUp() throws Exception {
-		cuenta = new Usuario("pepe", "mail", "42277777", mock(Rol.class), mock(MailServer.class));
+		cuenta = new Usuario("pepe", "mail", "42277777", mock(Rol.class));
 	}
 
 	@Test

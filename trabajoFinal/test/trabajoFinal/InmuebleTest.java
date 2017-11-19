@@ -11,7 +11,7 @@ import usuario.Usuario;
 
 public class InmuebleTest {
 	Inmueble inmueble;
-	Usuario usuario;
+	Usuario propietario;
 	ArrayList<String> servicios;
 	Ranking ranking;
 	Ranking ranking2;
@@ -21,7 +21,7 @@ public class InmuebleTest {
 		ranking = mock(Ranking.class);
 		ranking2 = mock(Ranking.class);
 		ranking3 = mock(Ranking.class);
-
+		propietario = mock(Usuario.class);
 		when(ranking.obtenerPuntaje()).thenReturn(new Double(10));
 		when(ranking2.obtenerPuntaje()).thenReturn(new Double(20));
 		when(ranking3.obtenerPuntaje()).thenReturn(new Double(30));
@@ -29,12 +29,12 @@ public class InmuebleTest {
 		servicios = new ArrayList<String>();
 		servicios.add("Pileta");
 		servicios.add("8 baños");
-		inmueble = new Inmueble(usuario, "/home", servicios, "Carpa", "Dinamarca", "Tristan Suarez", new Double(5), "Foto fea", new Integer(74));
+		inmueble = new Inmueble(propietario, "/home", servicios, "Carpa", "Dinamarca", "Tristan Suarez", new Double(5), "Foto fea", new Integer(74));
 	}
 
 	@Test
 	public void test_constructorInmueble() {
-		assertEquals(inmueble.obtenerPropietario(), usuario);
+		assertEquals(inmueble.obtenerPropietario(), propietario);
 		assertEquals(inmueble.obtenerDireccion(), "/home");
 		assertEquals(inmueble.obtenerServicios(), servicios);
 		assertEquals(inmueble.obtenerTipoDeInmueble(), "Carpa");
@@ -101,5 +101,10 @@ public class InmuebleTest {
 	@Test
 	public void test_elTipoDeRankingDeUnInmuebleEsinmueble() {
 		assertTrue(inmueble.tipoDeRanking().equals("inmueble"));
+	}
+	
+	@Test
+	public void test_cuandoSeCreaUnInmuebleSeAgregaAlPropietario() {
+		verify(propietario, times(1)).agregarInmueble(inmueble);
 	}
 }

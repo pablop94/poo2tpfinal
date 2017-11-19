@@ -17,6 +17,7 @@ import trabajoFinal.MailServer;
 import trabajoFinal.Publicacion;
 import trabajoFinal.Ranking;
 import trabajoFinal.Reserva;
+import trabajoFinal.Sitio;
 
 public class UsuarioTest {
 
@@ -31,13 +32,15 @@ public class UsuarioTest {
 	private Reserva reserva1;
 	private Reserva reserva2;
 	private Reserva reserva3;
+	@SuppressWarnings("unused")
+	private Sitio sitio = new Sitio(mailServer);
 	
 	
 	@Before
 	public void setUp(){
 		rol = mock(Rol.class);
 		mailServer = mock(MailServer.class);
-		usuario = new Usuario("Tobias", "mail1", "42424", rol, mailServer);
+		usuario = new Usuario("Tobias", "mail1", "42424", rol);
 		inmueble = mock(Inmueble.class);
 		publicacion = mock(Publicacion.class);
 		ranking = mock(Ranking.class);

@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
-import java.util.Observer;
 
 import usuario.Usuario;
 
@@ -40,6 +39,7 @@ public class Publicacion extends Observable{
 		this.precio = precio;
 		this.formasDePago= new ArrayList<String>();
 		formasDePago.add("Efectivo");
+		this.obtenerPropietario().agregarPublicacion(this);
 	}
 	
 	public void ingresarAjuste(Ajuste ajuste) {
@@ -49,11 +49,6 @@ public class Publicacion extends Observable{
 	public Double obtenerPrecioEn(LocalDate fecha) {
 		return this.precio.obtenerPrecioEn(fecha);
 	}
-	/*
-	public void reservar (LocalDate fechaInicial, LocalDate fechaFinal,ArrayList<String> formaDePago,Usuario inquilino) {
-		this.inmueble.obtenerPropietario().notificarPorMailIntentoDeReserva(fechaInicial, fechaFinal, formaDePago, inquilino);
-		
-	}*/
 
 	public Integer obtenerCantidadDeHuespedes() {
 		return this.obtenerInmueble().obtenerCapacidad();
@@ -67,9 +62,13 @@ public class Publicacion extends Observable{
 		Double precioAnterior = precio.obtenerPrecioBase();
 		this.precio.modificarPrecioBase(nuevoPrecio);
 		if (precioAnterior > nuevoPrecio) {
-			this.setChanged();
-			this.notifyObservers();
+			this.notifyObservers("CambioDePrecio");
 		}
+	}
+	@Override
+	public void notifyObservers(Object arg){
+		this.setChanged();
+		super.notifyObservers(arg);
 	}
 
 	public Usuario obtenerPropietario() {

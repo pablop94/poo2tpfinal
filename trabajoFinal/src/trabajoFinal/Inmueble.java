@@ -30,6 +30,7 @@ public class Inmueble implements IRankeable{
 		this.fotos = foto;
 		this.capacidad = cantidadHuespedes;
 		this.rankings = new ArrayList<>();
+		this.propietario.agregarInmueble(this);
 	}
 
 	public Usuario obtenerPropietario() {

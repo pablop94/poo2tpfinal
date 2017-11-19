@@ -15,21 +15,24 @@ import usuario.Usuario;
 public class PublicacionTest {
 	private Publicacion publicacion;
 	private Usuario usuario;
-	private Usuario usuario2;
 	private Precio precio;
 	private Ajuste ajuste;
 	private Inmueble inmueble;
 	private ArrayList<String> formaDePago;
+	private Observer suscriptor;
 	@Before
 	public void setUp(){
 		usuario = mock(Usuario.class);
-		usuario2 = mock(Usuario.class);
 		precio = mock(Precio.class);
 		inmueble = mock(Inmueble.class);
 		ajuste = mock(Ajuste.class);
+		when(inmueble.obtenerPropietario()).thenReturn(usuario);
 		publicacion = new Publicacion(inmueble,LocalDate.of(2016, 3, 20),LocalDate.of(2015, 3, 20),precio);
 		formaDePago = new ArrayList<String>();
 		formaDePago.add("Hola");
+		suscriptor = mock(Observer.class);
+		publicacion.addObserver(suscriptor);
+		
 	}
 	
 	@Test
@@ -44,15 +47,6 @@ public class PublicacionTest {
 		publicacion.ingresarAjuste(ajuste);
 		verify(precio, times(1)).ingresarAjuste(ajuste);
 	}
-	/*
-	@Test
-	public void testReservar_notificaAlInquilinoConUnMail() {
-		when(inmueble.obtenerPropietario()).thenReturn(usuario); 
-		publicacion.reservar(LocalDate.of(2016, 3, 20), LocalDate.of(2015, 3, 20), formaDePago, usuario2);
-		
-		verify(usuario, times(1)).notificarPorMailIntentoDeReserva(LocalDate.of(2016, 3, 20), LocalDate.of(2015, 3, 20), formaDePago, usuario2);
-		
-	}*/
 
 	@Test
 	public void test_elPrecioDeLaPublicacionEnUnaFechaEsElDeSuPrecio() {
@@ -84,26 +78,20 @@ public class PublicacionTest {
 	
 	@Test
 	public void test_cuandoSeCambiaElPrecioDeLaPublicacionSeLeInformaALosSuscriptoresSiElPrecioBaja() {
-		Observer suscriptor = mock(Observer.class);
-		publicacion.addObserver(suscriptor);
-		
 		when(precio.obtenerPrecioBase()).thenReturn(new Double(60));
 		
 		publicacion.modificarPrecio(new Double(50));
 
-		verify(suscriptor, times(1)).update(publicacion, null);
+		verify(suscriptor, times(1)).update(publicacion, "CambioDePrecio");
 	} 
 	
 	@Test
 	public void test_cuandoSeCambiaElPrecioDeLaPublicacionNoSeLeInformaALosSuscriptoresSiElPrecioNoBaja() {
-		Observer suscriptor = mock(Observer.class);
-		publicacion.addObserver(suscriptor);
-		
 		when(precio.obtenerPrecioBase()).thenReturn(new Double(40));
 		
 		publicacion.modificarPrecio(new Double(50));
 
-		verify(suscriptor, never()).update(publicacion, null);
+		verify(suscriptor, never()).update(publicacion, "CambioDePrecio");
 	}
 	
 	@Test
@@ -111,6 +99,12 @@ public class PublicacionTest {
 		when(inmueble.obtenerPropietario()).thenReturn(usuario);
 		
 		assertEquals(publicacion.obtenerPropietario(), usuario);
+	}
+	
+	@Test
+	public void test_cuandoSeCreaUnaPublicacionSeAgregaAlPropietario() {
+		
+		verify(usuario, times(1)).agregarPublicacion(publicacion);
 	}
 }
 

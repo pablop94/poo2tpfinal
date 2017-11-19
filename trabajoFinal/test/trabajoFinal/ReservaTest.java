@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
+import java.util.Observer;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,14 +17,17 @@ public class ReservaTest {
 	private Usuario inquilino;
 	private String formaDePagar;
 	private Usuario propietario;
+	private Observer obs;
 	@Before
 	public void setUp() throws Exception {
 		publicacion = mock(Publicacion.class);
 		inquilino = mock(Usuario.class);
 		propietario = mock(Usuario.class);
-		formaDePagar = "Tarjeta";
+		formaDePagar = "Tarjeta"; 
 		when(publicacion.obtenerPropietario()).thenReturn(propietario);
 		reserva = new Reserva(publicacion, inquilino,formaDePagar);
+		obs = mock(Observer.class);
+		reserva.addObserver(obs);
 	}
 
 	@Test
@@ -33,7 +37,7 @@ public class ReservaTest {
 	
 	@Test
 	public void test_cuandoUnaReservaEsAceptadaPasaAestarConfirmada() {
-		reserva.aceptarReserva();
+		reserva.aceptar();
 		assertTrue(reserva.estaConfirmada());
 	}
 	
@@ -75,4 +79,15 @@ public class ReservaTest {
 		verify(inquilino, times(1)).agregarReserva(reserva2);
 	}
 
+	@Test
+	public void test_cuandoSeCancelaUnaReservaLosSuscriptoresSonInformados() {
+		reserva.cancelar();
+		
+		verify(obs, times(1)).update(reserva, "Cancelacion");		
+	}
+	
+	@Test
+	public void test_cuandoSeCreaUnaNuevaReservaSeLeNotificaALosSuscriptoresDeLaPublicacion() {
+		verify(publicacion, times(1)).notifyObservers("NuevaReserva");		
+	}
 }

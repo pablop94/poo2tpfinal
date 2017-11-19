@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 
 import trabajoFinal.IRankeable;
 import trabajoFinal.Inmueble;
-import trabajoFinal.MailServer;
 import trabajoFinal.Publicacion;
 import trabajoFinal.Ranking;
 import trabajoFinal.Reserva;
+import trabajoFinal.Sitio;
 
 public class Usuario extends Cuenta implements IRankeable, Observer {
 
@@ -25,9 +25,8 @@ public class Usuario extends Cuenta implements IRankeable, Observer {
 	private List<Reserva> reservas;
 	private List<Ranking> rankings;
 	private LocalDate ingresoAlSistema;
-	private MailServer mailServer;
 	
-	public Usuario(String nombre, String mail, String numeroTelefono, Rol rol, MailServer mailServer) {
+	public Usuario(String nombre, String mail, String numeroTelefono, Rol rol) {
 		super(nombre, mail, numeroTelefono);
 		this.inmuebles= new ArrayList<Inmueble>();
 		this.reservas= new ArrayList<Reserva>();
@@ -35,7 +34,6 @@ public class Usuario extends Cuenta implements IRankeable, Observer {
 		this.rankings= new ArrayList<Ranking>();
 		this.rol= rol;
 		this.ingresoAlSistema = LocalDate.now();
-		this.mailServer = mailServer;
 	}
 
 	public void agregarInmueble(Inmueble inmueble) {
@@ -151,7 +149,7 @@ public class Usuario extends Cuenta implements IRankeable, Observer {
 	}
 
 	public void notificarPorMailIntentoDeReserva(Reserva reserva) {
-		mailServer.sendMail(this.obtenerMail(), 
+		Sitio.getInstance().getMailServer().sendMail(this.obtenerMail(), 
 							"Tenes una nueva reserva!", 
 							"El usuario " + reserva.obtenerInquilino().obtenerNombre() + 
 							" ha realizado una reserva en tu inmueble");
@@ -165,7 +163,7 @@ public class Usuario extends Cuenta implements IRankeable, Observer {
 	}
 
 	public void notificarPorMailReservaConfirmada(Reserva reserva) {
-		mailServer.sendMail(this.obtenerMail(), 
+		Sitio.getInstance().getMailServer().sendMail(this.obtenerMail(), 
 				"Tu reserva se confirmo!", 
 				"El propietario acepto tu reserva!");
 	}
