@@ -10,14 +10,14 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.stream.Collectors;
 
-import trabajoFinal.IRankeable;
+import interfaces.Rankeable;
 import trabajoFinal.Inmueble;
 import trabajoFinal.Publicacion;
 import trabajoFinal.Ranking;
 import trabajoFinal.Reserva;
 import trabajoFinal.Sitio;
 
-public class Usuario extends Cuenta implements IRankeable, Observer {
+public class Usuario extends Cuenta implements Rankeable{
 
 	private Rol rol;
 	private List<Publicacion> publicaciones;
@@ -153,13 +153,6 @@ public class Usuario extends Cuenta implements IRankeable, Observer {
 							"Tenes una nueva reserva!", 
 							"El usuario " + reserva.obtenerInquilino().obtenerNombre() + 
 							" ha realizado una reserva en tu inmueble");
-	}
-
-
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void notificarPorMailReservaConfirmada(Reserva reserva) {

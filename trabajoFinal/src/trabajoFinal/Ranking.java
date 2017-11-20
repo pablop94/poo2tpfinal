@@ -1,22 +1,23 @@
 package trabajoFinal;
 
+import interfaces.Rankeable;
 import usuario.Usuario;
 
 public class Ranking {
 
-	private IRankeable _entidad;
+	private Rankeable _entidad;
 	private Puntuacion _puntuacion;
 	private Usuario _rankeador;
 	private String _tipoDeRanking;
 
-	public Ranking(IRankeable entidad, Puntuacion puntuacion, Usuario rankeador) {
+	public Ranking(Rankeable entidad, Puntuacion puntuacion, Usuario rankeador) {
 		_entidad = entidad;
 		_puntuacion = puntuacion;
 		_rankeador = rankeador;
 		_tipoDeRanking = this.obtenerEntidad().tipoDeRanking();
 	}
 
-	public IRankeable obtenerEntidad() {
+	public Rankeable obtenerEntidad() {
 		return _entidad;
 	}
 

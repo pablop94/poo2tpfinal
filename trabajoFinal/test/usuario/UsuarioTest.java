@@ -12,8 +12,8 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import interfaces.MailServer;
 import trabajoFinal.Inmueble;
-import trabajoFinal.MailServer;
 import trabajoFinal.Publicacion;
 import trabajoFinal.Ranking;
 import trabajoFinal.Reserva;
@@ -33,13 +33,14 @@ public class UsuarioTest {
 	private Reserva reserva2;
 	private Reserva reserva3;
 	@SuppressWarnings("unused")
-	private Sitio sitio = new Sitio(mailServer);
+	private Sitio sitio;
 	
 	
 	@Before
 	public void setUp(){
 		rol = mock(Rol.class);
 		mailServer = mock(MailServer.class);
+		sitio = new Sitio(mailServer);
 		usuario = new Usuario("Tobias", "mail1", "42424", rol);
 		inmueble = mock(Inmueble.class);
 		publicacion = mock(Publicacion.class);

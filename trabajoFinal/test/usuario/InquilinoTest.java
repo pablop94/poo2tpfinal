@@ -12,9 +12,6 @@ import org.junit.Test;
 import trabajoFinal.Ranking;
 import trabajoFinal.Reserva;
 
-import org.junit.Before;
-import org.junit.Test;
-
 public class InquilinoTest {
 
 	Inquilino inquilino;
@@ -23,6 +20,7 @@ public class InquilinoTest {
 	private Reserva reserva2;
 	private Ranking ranking1;
 	private Ranking ranking2;
+	
 	@Before
 	public void setUp() throws Exception {
 		inquilino = new Inquilino();

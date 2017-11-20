@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import interfaces.Rankeable;
 import usuario.Usuario;
 
-public class Inmueble implements IRankeable{
+public class Inmueble implements Rankeable{
 	private Usuario propietario;
 	private String direccion;
 	private List<String> servicios;

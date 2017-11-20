@@ -1,8 +1,10 @@
-package trabajoFinal;
+package interfaces;
 
 import java.util.List;
 
-public interface IRankeable {
+import trabajoFinal.Ranking;
+
+public interface Rankeable {
 
 	public void agregarRanking(Ranking r);
 	

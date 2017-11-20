@@ -1,4 +1,4 @@
-package trabajoFinal;
+package interfaces;
 
 public interface MailServer {
 

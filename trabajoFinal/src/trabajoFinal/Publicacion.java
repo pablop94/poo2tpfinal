@@ -74,4 +74,8 @@ public class Publicacion extends Observable{
 	public Usuario obtenerPropietario() {
 		return this.obtenerInmueble().obtenerPropietario();
 	}
+
+	public String tipoDeInmueble() {
+		return this.obtenerInmueble().obtenerTipoDeInmueble();
+	}
 }

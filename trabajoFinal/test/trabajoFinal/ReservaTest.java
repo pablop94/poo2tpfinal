@@ -72,6 +72,13 @@ public class ReservaTest {
 	}
 	
 	@Test
+	public void test_elTipoDeInmuebleDeLaReservaEsElTipoDeInmuebleDeLaPublicacion() {
+		when(publicacion.tipoDeInmueble()).thenReturn("carpa");
+		
+		assertEquals(reserva.tipoDeInmueble(), "carpa");
+	}
+	
+	@Test
 	public void test_cuandoSeCreaUnaReservaElInquilinoYPropietarioSonInformados() {
 		Reserva reserva2 = new Reserva(publicacion, inquilino, formaDePagar);
 		verify(propietario, times(1)).agregarReserva(reserva2);

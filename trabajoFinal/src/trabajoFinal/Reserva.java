@@ -61,4 +61,8 @@ public class Reserva extends Observable{
 		super.notifyObservers(arg);
 	}
 
+	public String tipoDeInmueble() {
+		return this.publicacion.tipoDeInmueble();
+	}
+
 }

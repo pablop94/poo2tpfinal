@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import interfaces.Rankeable;
 import usuario.Usuario;
 
 import static org.mockito.Mockito.*;
@@ -11,13 +12,13 @@ import static org.mockito.Mockito.*;
 public class RankingTest {
 	
 	Ranking ranking;
-	IRankeable entidad;
+	Rankeable entidad;
 	Puntuacion puntuacion;
 	Usuario rankeador;
 	
 	@Before
 	public void setUp() throws Exception {
-		entidad = mock(IRankeable.class);
+		entidad = mock(Rankeable.class);
 		when(entidad.tipoDeRanking()).thenReturn("tipoDeRankingTest");
 		puntuacion = mock(Puntuacion.class);
 		rankeador = mock(Usuario.class);

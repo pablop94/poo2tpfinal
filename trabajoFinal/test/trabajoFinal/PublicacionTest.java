@@ -106,6 +106,13 @@ public class PublicacionTest {
 		
 		verify(usuario, times(1)).agregarPublicacion(publicacion);
 	}
+	
+	@Test
+	public void test_elTipoDeInmuebleDeLaPublicacionEsElTipoDeInmuebleDelInmueble() {
+		when(inmueble.obtenerTipoDeInmueble()).thenReturn("carpa");
+		
+		assertEquals(publicacion.tipoDeInmueble(), "carpa");
+	}
 }
 
 
