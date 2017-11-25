@@ -19,7 +19,7 @@ public class Reserva extends Observable{
 		this.obtenerInquilino().agregarReserva(this);
 		this.obtenerPropietario().agregarReserva(this);
 		this.obtenerPropietario().notificarPorMailIntentoDeReserva(this);
-		this.publicacion.notifyObservers("NuevaReserva");
+		this.publicacion.reservar();
 	}
 	
 	public void aceptar() {
@@ -52,13 +52,8 @@ public class Reserva extends Observable{
 	}
 
 	public void cancelar() {
-		this.notifyObservers("Cancelacion");
-	}
-	
-	@Override
-	public void notifyObservers(Object arg){
 		this.setChanged();
-		super.notifyObservers(arg);
+		this.notifyObservers("Cancelacion");
 	}
 
 	public String tipoDeInmueble() {

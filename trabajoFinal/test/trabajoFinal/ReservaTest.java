@@ -95,6 +95,6 @@ public class ReservaTest {
 	
 	@Test
 	public void test_cuandoSeCreaUnaNuevaReservaSeLeNotificaALosSuscriptoresDeLaPublicacion() {
-		verify(publicacion, times(1)).notifyObservers("NuevaReserva");		
+		verify(publicacion, times(1)).reservar();		
 	}
 }

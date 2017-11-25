@@ -62,13 +62,9 @@ public class Publicacion extends Observable{
 		Double precioAnterior = precio.obtenerPrecioBase();
 		this.precio.modificarPrecioBase(nuevoPrecio);
 		if (precioAnterior > nuevoPrecio) {
+			this.setChanged();
 			this.notifyObservers("CambioDePrecio");
 		}
-	}
-	@Override
-	public void notifyObservers(Object arg){
-		this.setChanged();
-		super.notifyObservers(arg);
 	}
 
 	public Usuario obtenerPropietario() {
@@ -77,5 +73,10 @@ public class Publicacion extends Observable{
 
 	public String tipoDeInmueble() {
 		return this.obtenerInmueble().obtenerTipoDeInmueble();
+	}
+	
+	public void reservar(){
+		this.setChanged();
+		this.notifyObservers("NuevaReserva");
 	}
 }

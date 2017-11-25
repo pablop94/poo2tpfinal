@@ -113,6 +113,13 @@ public class PublicacionTest {
 		
 		assertEquals(publicacion.tipoDeInmueble(), "carpa");
 	}
+	
+	@Test
+	public void test_reservarLeInformaAlosSuscriptoresConElMensajeNuevaReserva() {
+		publicacion.reservar();
+		
+		verify(suscriptor, times(1)).update(publicacion, "NuevaReserva");
+	}
 }
 
 
